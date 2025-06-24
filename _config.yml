@@ -2,8 +2,5 @@ theme: jekyll-theme-minimal
 
 logo: "/assets/img/logo.jpg"
 
-@import "{{ site.theme }}";
-.markdown-body {
-  font-family: 'Times New Roman', Times, serif;
-}
+font-family: 'Times New Roman', Times, serif;
 
