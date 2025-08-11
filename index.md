@@ -3,5 +3,3 @@ In May 2025, I graduated from Columbia with a degree in math and physics. In Sep
 
 ## Math
 I wrote my undergraduate thesis supervised by Professor Ivan Corwin on some Kardar-Parisi-Zhang universality results for last passage percolation models.
-
-[Here](https://jameshstephens.github.io/stanford-quals/) is a collection of problems from Stanford real analysis qualifying exams transcribed from [PDFs](https://drive.google.com/drive/folders/1V6RwKA4sHFAfqiyIKJ45m8sNJOGVIapg) and tagged (by an LLM - beware!) by topic.
