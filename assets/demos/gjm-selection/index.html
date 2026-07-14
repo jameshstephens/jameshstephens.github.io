@@ -1,0 +1,1538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Strong selection for the GJM particle system</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;max-width:736px;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Strong selection for the GJM particle system" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Strong selection for the GJM particle system&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;gjm-selection-limit&quot; class=&quot;gjm-limit-root&quot;&gt;
+  &lt;div class=&quot;viz-row gjm-limit-key&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;span class=&quot;gjm-limit-key-item&quot;&gt;&lt;span class=&quot;gjm-limit-swatch gjm-limit-n32&quot;&gt;&lt;/span&gt;N = 32&lt;/span&gt;
+    &lt;span class=&quot;gjm-limit-key-item&quot;&gt;&lt;span class=&quot;gjm-limit-swatch gjm-limit-n128&quot;&gt;&lt;/span&gt;N = 128&lt;/span&gt;
+    &lt;span class=&quot;gjm-limit-key-item&quot;&gt;&lt;span class=&quot;gjm-limit-swatch gjm-limit-n512&quot;&gt;&lt;/span&gt;N = 512&lt;/span&gt;
+    &lt;span class=&quot;gjm-limit-key-item&quot;&gt;&lt;span class=&quot;gjm-limit-swatch gjm-limit-wave&quot;&gt;&lt;/span&gt;minimal wave&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;gjm-limit-stage&quot;&gt;
+    &lt;canvas id=&quot;gjm-limit-canvas&quot; role=&quot;img&quot; aria-label=&quot;A one-dimensional interacting Brownian particle system and three stationary empirical cumulative distributions for increasing population sizes, compared with the minimal Fisher–KPP wave.&quot;&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;viz-controls&quot;&gt;
+    &lt;button id=&quot;gjm-limit-toggle&quot; class=&quot;btn btn-primary&quot; type=&quot;button&quot;&gt;Pause&lt;/button&gt;
+    &lt;button id=&quot;gjm-limit-reset&quot; class=&quot;btn&quot; type=&quot;button&quot;&gt;New stationary samples&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;viz-row gjm-limit-status text-small text-muted&quot;&gt;
+    &lt;span id=&quot;gjm-limit-time&quot;&gt;t = 0.0&lt;/span&gt;
+    &lt;span aria-hidden=&quot;true&quot;&gt;·&lt;/span&gt;
+    &lt;span id=&quot;gjm-limit-distance&quot;&gt;sup distances —&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p id=&quot;gjm-limit-summary&quot; class=&quot;sr-only&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  #gjm-selection-limit {
+    width: 100%;
+    color: var(--foreground);
+  }
+
+  #gjm-selection-limit .gjm-limit-key {
+    justify-content: flex-start;
+    margin-bottom: 0.35rem;
+  }
+
+  #gjm-selection-limit .gjm-limit-key-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--muted-foreground);
+  }
+
+  #gjm-selection-limit .gjm-limit-swatch {
+    width: 1.05rem;
+    height: 0;
+    border-top: 2px solid var(--viz-series-1);
+  }
+
+  #gjm-selection-limit .gjm-limit-n32 {
+    border-top-style: dotted;
+    opacity: 0.45;
+  }
+
+  #gjm-selection-limit .gjm-limit-n128 {
+    border-top-style: dashed;
+    opacity: 0.72;
+  }
+
+  #gjm-selection-limit .gjm-limit-wave {
+    border-top-color: var(--viz-series-2);
+  }
+
+  #gjm-selection-limit .gjm-limit-stage {
+    position: relative;
+    width: 100%;
+    height: clamp(390px, 61vw, 450px);
+  }
+
+  #gjm-selection-limit canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #gjm-selection-limit .viz-controls {
+    justify-content: flex-start;
+    margin-top: 0.35rem;
+  }
+
+  #gjm-selection-limit .gjm-limit-status {
+    justify-content: flex-start;
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 480px) {
+    #gjm-selection-limit .gjm-limit-key,
+    #gjm-selection-limit .gjm-limit-status {
+      gap: 0.45rem;
+    }
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const root = document.getElementById(&quot;gjm-selection-limit&quot;);
+  if (!root) return;
+
+  const canvas = root.querySelector(&quot;#gjm-limit-canvas&quot;);
+  const context = canvas.getContext(&quot;2d&quot;);
+  const toggleButton = root.querySelector(&quot;#gjm-limit-toggle&quot;);
+  const resetButton = root.querySelector(&quot;#gjm-limit-reset&quot;);
+  const timeLabel = root.querySelector(&quot;#gjm-limit-time&quot;);
+  const distanceLabel = root.querySelector(&quot;#gjm-limit-distance&quot;);
+  const summary = root.querySelector(&quot;#gjm-limit-summary&quot;);
+
+  const POPULATIONS = [32, 128, 512];
+  const SQRT_TWO = Math.sqrt(2);
+  const X_MIN = -9;
+  const X_MAX = 9;
+  const STEP = 0.012;
+  const SIMULATION_RATE = 0.52;
+  const reducedMotion = window.matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches;
+
+  let systems = [];
+  let simulationTime = 0;
+  let running = !reducedMotion;
+  let previousFrame = performance.now();
+  let accumulator = 0;
+  let gaussianSpare = null;
+  let frameRequest = 0;
+  let lastSummarySecond = -1;
+
+  function theme() {
+    const style = getComputedStyle(root);
+    return {
+      foreground: style.getPropertyValue(&quot;--foreground&quot;).trim(),
+      muted: style.getPropertyValue(&quot;--muted-foreground&quot;).trim(),
+      border: style.getPropertyValue(&quot;--border&quot;).trim(),
+      particle: style.getPropertyValue(&quot;--viz-series-1&quot;).trim(),
+      wave: style.getPropertyValue(&quot;--viz-series-2&quot;).trim()
+    };
+  }
+
+  function normalRandom() {
+    if (gaussianSpare !== null) {
+      const value = gaussianSpare;
+      gaussianSpare = null;
+      return value;
+    }
+    let u = 0;
+    let v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    const radius = Math.sqrt(-2 * Math.log(u));
+    const angle = 2 * Math.PI * v;
+    gaussianSpare = radius * Math.sin(angle);
+    return radius * Math.cos(angle);
+  }
+
+  function rk4Step(w, p, h) {
+    const derivative = (value, slope) =&gt; [
+      slope,
+      -2 * SQRT_TWO * slope - 2 * (value * value - value)
+    ];
+    const [a1, b1] = derivative(w, p);
+    const [a2, b2] = derivative(w + h * a1 / 2, p + h * b1 / 2);
+    const [a3, b3] = derivative(w + h * a2 / 2, p + h * b2 / 2);
+    const [a4, b4] = derivative(w + h * a3, p + h * b3);
+    return [
+      w + h * (a1 + 2 * a2 + 2 * a3 + a4) / 6,
+      p + h * (b1 + 2 * b2 + 2 * b3 + b4) / 6
+    ];
+  }
+
+  function buildMinimalWave() {
+    const growth = -SQRT_TWO + 2;
+    const h = 0.004;
+    let x = 0;
+    let w = 1e-9;
+    let p = growth * w;
+    let medianX = 0;
+    let foundMedian = false;
+    const points = [{ x, w }];
+
+    for (let index = 0; index &lt; 18000 &amp;&amp; w &lt; 1 - 1e-10; index += 1) {
+      [w, p] = rk4Step(w, p, h);
+      x += h;
+      if (!foundMedian &amp;&amp; w &gt;= 0.5) {
+        medianX = x;
+        foundMedian = true;
+      }
+      if (index % 3 === 0) points.push({ x, w: Math.max(0, Math.min(1, w)) });
+    }
+
+    const centered = points.map((point) =&gt; ({ x: point.x - medianX, w: point.w }));
+
+    function valueAt(z) {
+      if (z &lt;= centered[0].x) return 0;
+      if (z &gt;= centered[centered.length - 1].x) return 1;
+      let low = 0;
+      let high = centered.length - 1;
+      while (high - low &gt; 1) {
+        const middle = (low + high) &gt;&gt; 1;
+        if (centered[middle].x &lt;= z) low = middle;
+        else high = middle;
+      }
+      const left = centered[low];
+      const right = centered[high];
+      const amount = (z - left.x) / (right.x - left.x);
+      return left.w + amount * (right.w - left.w);
+    }
+
+    function quantile(probability) {
+      let low = 0;
+      let high = centered.length - 1;
+      while (high - low &gt; 1) {
+        const middle = (low + high) &gt;&gt; 1;
+        if (centered[middle].w &lt;= probability) low = middle;
+        else high = middle;
+      }
+      const left = centered[low];
+      const right = centered[high];
+      const span = Math.max(1e-12, right.w - left.w);
+      return left.x + ((probability - left.w) / span) * (right.x - left.x);
+    }
+
+    return { valueAt, quantile };
+  }
+
+  const minimalWave = buildMinimalWave();
+
+  function median(values) {
+    const sorted = [...values].sort((a, b) =&gt; a - b);
+    const middle = sorted.length &gt;&gt; 1;
+    return sorted.length % 2
+      ? sorted[middle]
+      : (sorted[middle - 1] + sorted[middle]) / 2;
+  }
+
+  function poisson(lambda) {
+    const threshold = Math.exp(-lambda);
+    let product = 1;
+    let count = 0;
+    do {
+      count += 1;
+      product *= Math.random();
+    } while (product &gt; threshold);
+    return count - 1;
+  }
+
+  function newSystem(size) {
+    return {
+      size,
+      particles: Array.from({ length: size }, (_, index) =&gt; {
+        const probability = (index + 0.5) / size;
+        return minimalWave.quantile(probability) + 0.025 * normalRandom();
+      }),
+      flash: null
+    };
+  }
+
+  function stepSystem(system, dt, keepFlash) {
+    const diffusion = Math.sqrt(dt);
+    for (let index = 0; index &lt; system.size; index += 1) {
+      system.particles[index] += diffusion * normalRandom();
+    }
+
+    const events = poisson(system.size * dt);
+    for (let event = 0; event &lt; events; event += 1) {
+      const initiator = Math.floor(Math.random() * system.size);
+      let partner = Math.floor(Math.random() * (system.size - 1));
+      if (partner &gt;= initiator) partner += 1;
+      if (system.particles[initiator] &lt; system.particles[partner]) {
+        if (keepFlash) {
+          system.flash = {
+            from: system.particles[initiator],
+            to: system.particles[partner],
+            life: 1
+          };
+        }
+        system.particles[initiator] = system.particles[partner];
+      }
+    }
+
+    if (system.flash) system.flash.life = Math.max(0, system.flash.life - dt * 2.8);
+  }
+
+  function centerSystem(system) {
+    const center = median(system.particles);
+    system.particles = system.particles.map((position) =&gt; position - center);
+  }
+
+  function initialize() {
+    gaussianSpare = null;
+    systems = POPULATIONS.map(newSystem);
+    const burnSteps = Math.round(28 / STEP);
+    for (let step = 0; step &lt; burnSteps; step += 1) {
+      for (const system of systems) stepSystem(system, STEP, false);
+      if (step % 250 === 249) systems.forEach(centerSystem);
+    }
+    systems.forEach(centerSystem);
+    simulationTime = 0;
+    accumulator = 0;
+    previousFrame = performance.now();
+    lastSummarySecond = -1;
+    draw();
+  }
+
+  function resizeCanvas() {
+    const rectangle = canvas.getBoundingClientRect();
+    const ratio = Math.min(2, window.devicePixelRatio || 1);
+    const width = Math.max(1, Math.round(rectangle.width * ratio));
+    const height = Math.max(1, Math.round(rectangle.height * ratio));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    return { width: rectangle.width, height: rectangle.height };
+  }
+
+  function drawText(text, x, y, color, align = &quot;left&quot;, weight = 400) {
+    const baseSize = parseFloat(getComputedStyle(root).getPropertyValue(&quot;--font-size-base&quot;)) || 14;
+    context.fillStyle = color;
+    context.font = `${weight} ${Math.max(11, baseSize * 0.78)}px system-ui, sans-serif`;
+    context.textAlign = align;
+    context.textBaseline = &quot;middle&quot;;
+    context.fillText(text, x, y);
+  }
+
+  function centeredPositions(system) {
+    const center = median(system.particles);
+    return {
+      center,
+      sorted: system.particles.map((position) =&gt; position - center).sort((a, b) =&gt; a - b)
+    };
+  }
+
+  function profileDistance(sorted) {
+    let empiricalIndex = 0;
+    let distance = 0;
+    for (let sample = 0; sample &lt;= 180; sample += 1) {
+      const z = X_MIN + (sample / 180) * (X_MAX - X_MIN);
+      while (empiricalIndex &lt; sorted.length &amp;&amp; sorted[empiricalIndex] &lt;= z) empiricalIndex += 1;
+      distance = Math.max(distance, Math.abs(empiricalIndex / sorted.length - minimalWave.valueAt(z)));
+    }
+    return distance;
+  }
+
+  function drawEmpirical(sorted, xScale, yScale, color, alpha, dash, width) {
+    let firstVisible = 0;
+    while (firstVisible &lt; sorted.length &amp;&amp; sorted[firstVisible] &lt; X_MIN) firstVisible += 1;
+    let previousProbability = firstVisible / sorted.length;
+
+    context.save();
+    context.strokeStyle = color;
+    context.globalAlpha = alpha;
+    context.lineWidth = width;
+    context.setLineDash(dash);
+    context.lineCap = &quot;square&quot;;
+    context.lineJoin = &quot;miter&quot;;
+    context.beginPath();
+    context.moveTo(xScale(X_MIN), yScale(previousProbability));
+    for (let index = firstVisible; index &lt; sorted.length; index += 1) {
+      const z = sorted[index];
+      if (z &gt; X_MAX) break;
+      const nextProbability = (index + 1) / sorted.length;
+      context.lineTo(xScale(z), yScale(previousProbability));
+      context.lineTo(xScale(z), yScale(nextProbability));
+      previousProbability = nextProbability;
+    }
+    context.lineTo(xScale(X_MAX), yScale(previousProbability));
+    context.stroke();
+    context.restore();
+  }
+
+  function draw() {
+    const { width, height } = resizeCanvas();
+    const colors = theme();
+    context.clearRect(0, 0, width, height);
+
+    const left = width &lt; 430 ? 34 : 44;
+    const right = width &lt; 430 ? 10 : 18;
+    const plotWidth = width - left - right;
+    const particleAxisY = 94;
+    const chartTop = 214;
+    const chartBottom = height - 34;
+    const chartHeight = Math.max(100, chartBottom - chartTop);
+    const xScale = (x) =&gt; left + ((x - X_MIN) / (X_MAX - X_MIN)) * plotWidth;
+    const yScale = (value) =&gt; chartBottom - value * chartHeight;
+    const profiles = systems.map(centeredPositions);
+
+    drawText(&quot;ONE SPATIAL DIMENSION · N = 128&quot;, left, 14, colors.muted, &quot;left&quot;, 500);
+    drawText(&quot;STATIONARY EMPIRICAL CDFs · COMMON MEDIAN CENTERING&quot;, left, chartTop - 26, colors.muted, &quot;left&quot;, 500);
+    drawText(&quot;cumulative mass&quot;, width - right, chartTop - 8, colors.muted, &quot;right&quot;);
+
+    context.save();
+    context.strokeStyle = colors.border;
+    context.lineWidth = 1;
+    context.beginPath();
+    context.moveTo(left, particleAxisY);
+    context.lineTo(width - right, particleAxisY);
+    context.stroke();
+    context.restore();
+
+    const displayed = systems[1];
+    const displayedCenter = profiles[1].center;
+    if (displayed.flash &amp;&amp; displayed.flash.life &gt; 0) {
+      const fromX = xScale(displayed.flash.from - displayedCenter);
+      const toX = xScale(displayed.flash.to - displayedCenter);
+      if (toX &gt;= left &amp;&amp; fromX &lt;= width - right) {
+        const arcHeight = Math.min(44, Math.max(18, (toX - fromX) * 0.22));
+        context.save();
+        context.strokeStyle = colors.wave;
+        context.fillStyle = colors.wave;
+        context.globalAlpha = Math.min(0.85, displayed.flash.life);
+        context.lineWidth = 1.5;
+        context.beginPath();
+        context.moveTo(fromX, particleAxisY);
+        context.quadraticCurveTo((fromX + toX) / 2, particleAxisY - arcHeight, toX, particleAxisY);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(toX, particleAxisY);
+        context.lineTo(toX - 6, particleAxisY - 4);
+        context.lineTo(toX - 4, particleAxisY + 5);
+        context.closePath();
+        context.fill();
+        context.restore();
+      }
+    }
+
+    context.save();
+    context.fillStyle = colors.particle;
+    context.globalAlpha = 0.82;
+    for (const position of displayed.particles) {
+      const z = position - displayedCenter;
+      if (z &lt; X_MIN - 0.2 || z &gt; X_MAX + 0.2) continue;
+      context.beginPath();
+      context.arc(xScale(z), particleAxisY, width &lt; 430 ? 2.2 : 2.6, 0, Math.PI * 2);
+      context.fill();
+    }
+    context.restore();
+
+    for (const tick of [-8, -4, 0, 4, 8]) {
+      const x = xScale(tick);
+      context.save();
+      context.strokeStyle = colors.border;
+      context.lineWidth = tick === 0 ? 1.5 : 1;
+      context.beginPath();
+      context.moveTo(x, particleAxisY - 5);
+      context.lineTo(x, particleAxisY + 5);
+      context.stroke();
+      context.restore();
+      drawText(String(tick), x, particleAxisY + 18, colors.muted, &quot;center&quot;);
+    }
+    drawText(&quot;x − median&quot;, width - right, particleAxisY + 18, colors.muted, &quot;right&quot;);
+
+    context.save();
+    context.strokeStyle = colors.border;
+    context.lineWidth = 1;
+    for (const value of [0, 0.5, 1]) {
+      const y = yScale(value);
+      context.beginPath();
+      context.moveTo(left, y);
+      context.lineTo(width - right, y);
+      context.stroke();
+      drawText(value.toFixed(value === 0.5 ? 1 : 0), left - 8, y, colors.muted, &quot;right&quot;);
+    }
+    context.restore();
+
+    context.save();
+    context.strokeStyle = colors.wave;
+    context.lineWidth = 2.8;
+    context.lineCap = &quot;round&quot;;
+    context.lineJoin = &quot;round&quot;;
+    context.beginPath();
+    for (let pixel = 0; pixel &lt;= Math.ceil(plotWidth); pixel += 2) {
+      const z = X_MIN + (pixel / plotWidth) * (X_MAX - X_MIN);
+      const x = xScale(z);
+      const y = yScale(minimalWave.valueAt(z));
+      if (pixel === 0) context.moveTo(x, y);
+      else context.lineTo(x, y);
+    }
+    context.stroke();
+    context.restore();
+
+    drawEmpirical(profiles[0].sorted, xScale, yScale, colors.particle, 0.42, [2, 5], 1.5);
+    drawEmpirical(profiles[1].sorted, xScale, yScale, colors.particle, 0.7, [7, 4], 1.8);
+    drawEmpirical(profiles[2].sorted, xScale, yScale, colors.particle, 1, [], 2.1);
+
+    for (const tick of [-8, -4, 0, 4, 8]) {
+      const x = xScale(tick);
+      context.save();
+      context.strokeStyle = colors.border;
+      context.lineWidth = tick === 0 ? 1.5 : 1;
+      context.beginPath();
+      context.moveTo(x, chartBottom);
+      context.lineTo(x, chartBottom + 5);
+      context.stroke();
+      context.restore();
+      drawText(String(tick), x, chartBottom + 17, colors.muted, &quot;center&quot;);
+    }
+    drawText(&quot;x − median&quot;, width - right, chartBottom + 17, colors.muted, &quot;right&quot;);
+
+    const distances = profiles.map((profile) =&gt; profileDistance(profile.sorted));
+    timeLabel.textContent = `t = ${simulationTime.toFixed(1)}`;
+    distanceLabel.textContent = `sup distances  ${distances.map((value, index) =&gt; `N=${POPULATIONS[index]}: ${value.toFixed(3)}`).join(&quot;  ·  &quot;)}`;
+
+    const wholeSecond = Math.floor(simulationTime);
+    if (wholeSecond !== lastSummarySecond) {
+      lastSummarySecond = wholeSecond;
+      summary.textContent = `At time ${simulationTime.toFixed(1)}, the displayed sup distances from the minimal wave are ${distances.map((value, index) =&gt; `${value.toFixed(3)} for N equals ${POPULATIONS[index]}`).join(&quot;, &quot;)}.`;
+    }
+  }
+
+  function animate(now) {
+    const elapsed = Math.min(0.08, (now - previousFrame) / 1000);
+    previousFrame = now;
+    if (running) {
+      accumulator += elapsed * SIMULATION_RATE;
+      while (accumulator &gt;= STEP) {
+        for (let index = 0; index &lt; systems.length; index += 1) {
+          stepSystem(systems[index], STEP, index === 1);
+        }
+        simulationTime += STEP;
+        accumulator -= STEP;
+      }
+    }
+    draw();
+    frameRequest = requestAnimationFrame(animate);
+  }
+
+  toggleButton.addEventListener(&quot;click&quot;, () =&gt; {
+    running = !running;
+    toggleButton.textContent = running ? &quot;Pause&quot; : &quot;Play&quot;;
+    toggleButton.setAttribute(&quot;aria-pressed&quot;, String(!running));
+    previousFrame = performance.now();
+  });
+
+  resetButton.addEventListener(&quot;click&quot;, initialize);
+  window.addEventListener(&quot;resize&quot;, draw);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; cancelAnimationFrame(frameRequest), { once: true });
+
+  if (reducedMotion) {
+    toggleButton.textContent = &quot;Play&quot;;
+    toggleButton.setAttribute(&quot;aria-pressed&quot;, &quot;true&quot;);
+  }
+
+  initialize();
+  frameRequest = requestAnimationFrame(animate);
+})();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
