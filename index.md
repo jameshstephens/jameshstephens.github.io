@@ -3,13 +3,9 @@ layout: default
 title: James Stephens
 ---
 
-![James Stephens](/assets/img/logo.jpg)
-
 # James Stephens
 
-I am a PhD student in mathematics at Stanford University. I graduated from Columbia University in May 2025 with a degree in mathematics and physics.
-
-My research interests include probability, interacting particle systems, branching-selection systems, and last-passage percolation.
+I am a PhD student in mathematics at Stanford University. I graduated from Columbia University in May 2025 with a degree in mathematics and physics. My interests are in probability theory and partial differential equations. 
 
 ## Talks and notes
 
