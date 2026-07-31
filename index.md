@@ -1,7 +1,18 @@
-## About
-In May 2025, I graduated from Columbia with a degree in math and physics. In September 2025, I began the [math PhD program](https://mathematics.stanford.edu/academics/graduate-students/phd-program) at Stanford. 
+---
+layout: default
+title: James Stephens
+---
 
-## Talks and Notes
-In July 2026 at the 4th Simons Math Summer Workshop, I gave a "lightning talk" on branching-selection particle systems. [Here](stephens_scgp_2026.pdf) are the slides. 
+![James Stephens](/assets/img/logo.jpg)
+
+# James Stephens
+
+I am a PhD student in mathematics at Stanford University. I graduated from Columbia University in May 2025 with a degree in mathematics and physics.
+
+My research interests include probability, interacting particle systems, branching-selection systems, and last-passage percolation.
+
+## Talks and notes
+
+In July 2026, at the 4th Simons Math Summer Workshop, I gave a lightning talk on branching-selection particle systems. [Slides](/stephens_scgp_2026.pdf)
 
 
