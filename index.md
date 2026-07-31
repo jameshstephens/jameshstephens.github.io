@@ -13,6 +13,6 @@ My research interests include probability, interacting particle systems, branchi
 
 ## Talks and notes
 
-In July 2026, at the 4th Simons Math Summer Workshop, I gave a lightning talk on branching-selection particle systems. [Slides](/stephens_scgp_2026.pdf)
+In July 2026, at the 4th Simons Math Summer Workshop, I gave a lightning talk on branching-selection particle systems. [Slides](/stephens_scgp_2026.pdf).
 
 
