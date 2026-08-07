@@ -5,7 +5,7 @@ title: James Stephens
 
 # James Stephens
 
-I am a PhD student in mathematics at Stanford University. I graduated from Columbia University in May 2025 with a degree in mathematics and physics. My interests are in probability theory and partial differential equations. 
+I am a PhD student in mathematics at Stanford University. I graduated from Columbia University in May 2025 with a degree in mathematics and physics. My interests are in probability theory and partial differential equations. [Here](/Stephens_7_August_2026.pdf) is a brief CV.
 
 ## Talks and notes
 
